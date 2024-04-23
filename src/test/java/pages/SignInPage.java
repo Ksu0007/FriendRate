@@ -14,7 +14,7 @@ public class SignInPage extends BasePage {
     @FindBy(xpath = "//h2")
     private WebElement header;
 
-    @FindBy(css = ".styles_description__A2FMr")
+    @FindBy(xpath = "//div[@class='styles_description__lwxWZ']/p")
     private WebElement pageDescription;
 
     @FindBy(xpath = "//label[@for='email']")
