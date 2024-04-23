@@ -23,7 +23,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(css = "/html/body/div[2]/div/div/form/div[1]/div")
+    @FindBy(css = "//form/div[1]/div")
     private WebElement emailErrorMsg;
 
     @FindBy(xpath = "//label[@for='password']")
@@ -32,7 +32,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#password")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/form/div[2]/div[2]")
+    @FindBy(xpath = "//form/div[2]/div[2]")
     //textarea[@id='about']/following-sibling::span[contains(@class, 'edit_errMes')]
     private WebElement passwordErrorMsg;
 
@@ -85,6 +85,12 @@ public class SignInPage extends BasePage {
 
     public boolean isContinueButtonDisabled() {
         return continueButton.getAttribute("disabled") != null;
+    }
+
+    public void invalidAuth(String email, String password) {
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        continueButton.click();
     }
 
 

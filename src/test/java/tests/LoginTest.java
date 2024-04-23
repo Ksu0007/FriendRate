@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1)
     public void testPageDescription() {
         SignInPage signInPage = new StartPage().signIn();
-        Assert.assertEquals(signInPage.getHeaderText(), TestValues.DESC_SIGNIN);
+        Assert.assertEquals(signInPage.getDescriptionText(), TestValues.DESC_SIGNIN);
     }
 
     @Test(priority = 1)
@@ -114,7 +114,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 2)
     public void checkWrongPassword() {
         SignInPage signInPage = new StartPage().signIn();
-        signInPage.authorization(TestValues.VALID_EMAIL, TestValues.VALID_PASSWORD + "2");
+        signInPage.invalidAuth(TestValues.VALID_EMAIL, TestValues.VALID_PASSWORD + "2");
         Assert.assertEquals(signInPage.getPasswordError(), TestValues.PASSWORD_WRONG_ERROR);
     }
 
