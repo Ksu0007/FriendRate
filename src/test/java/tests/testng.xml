@@ -1,0 +1,8 @@
+<suite name="FriendRate">
+    <name name="MyTests">
+        <classes>
+            <class name="tests.LoginTest" />
+        </classes>
+
+    </name>
+</suite>
