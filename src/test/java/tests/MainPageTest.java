@@ -62,4 +62,5 @@ public class MainPageTest extends BaseTest {
         Assert.assertEquals(mainPage.getRightSliderVaue(), "25");
     }
 
+
 }
