@@ -23,7 +23,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(xpath = "//form[@class=\"styles_imputForm__xxJN2\"]/div[1]//div[@class=\"styles_reset__Hd9Tk\"]")
+    @FindBy(css = "/html/body/div[2]/div/div/form/div[1]/div")
     private WebElement emailErrorMsg;
 
     @FindBy(xpath = "//label[@for='password']")
@@ -32,7 +32,8 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#password")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//form[@class=\"styles_imputForm__xxJN2\"]/div[2]//div[@class=\"styles_reset__Hd9Tk\"]")
+    @FindBy(xpath = "/html/body/div[2]/div/div/form/div[2]/div[2]")
+    //textarea[@id='about']/following-sibling::span[contains(@class, 'edit_errMes')]
     private WebElement passwordErrorMsg;
 
     @FindBy(xpath = "//button[@type='submit']")
