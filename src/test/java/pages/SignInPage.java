@@ -23,7 +23,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(xpath = "//form/div[1]/div")
+    @FindBy(css = ".styles_reset__Hd9Tk")
     private WebElement emailErrorMsg;
 
     @FindBy(xpath = "//label[@for='password']")
@@ -32,7 +32,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#password")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//form/div[2]/div[2]")
+    @FindBy(css = ".styles_reset__Hd9Tk")
     //textarea[@id='about']/following-sibling::span[contains(@class, 'edit_errMes')]
     private WebElement passwordErrorMsg;
 

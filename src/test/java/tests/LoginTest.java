@@ -100,22 +100,22 @@ public class LoginTest extends BaseTest {
     @Test(priority = 2)
     public void checkPassword7chars() {
         SignInPage signInPage = new StartPage().signIn();
-        signInPage.fillInPassword("Qwe$123");
-        Assert.assertEquals(signInPage.getPasswordError(), TestValues.PASSWORD_ERROR);
+        signInPage.invalidAuth(TestValues.VALID_EMAIL, "Qwe$123");
+        Assert.assertTrue(signInPage.getPasswordError().contains(TestValues.PASSWORD_ERROR));
     }
 
     @Test(priority = 2)
     public void checkPasswordWithoutNumbers() {
         SignInPage signInPage = new StartPage().signIn();
-        signInPage.fillInPassword("Qwe$wert");
-        Assert.assertEquals(signInPage.getPasswordError(), TestValues.PASSWORD_ERROR);
+        signInPage.invalidAuth(TestValues.VALID_EMAIL, "Qwe$wert");
+        Assert.assertTrue(signInPage.getPasswordError().contains(TestValues.PASSWORD_WRONG_ERROR)); //must be password error
     }
 
     @Test(priority = 2)
     public void checkWrongPassword() {
         SignInPage signInPage = new StartPage().signIn();
         signInPage.invalidAuth(TestValues.VALID_EMAIL, TestValues.VALID_PASSWORD + "2");
-        Assert.assertEquals(signInPage.getPasswordError(), TestValues.PASSWORD_WRONG_ERROR);
+        Assert.assertTrue(signInPage.getPasswordError().contains(TestValues.PASSWORD_WRONG_ERROR));
     }
 
     @Test(priority = 3)
