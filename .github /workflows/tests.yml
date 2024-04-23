@@ -61,6 +61,7 @@ jobs:
         run: mvn test
         env:
           ENV_BROWSER_NAME: "FIREFOX"
+          
       - name: Allure Report with history for Firefox
         uses: simple-elf/allure-report-action@v1.9
         if: always()
