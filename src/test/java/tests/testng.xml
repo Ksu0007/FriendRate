@@ -1,10 +1,10 @@
 <suite name="FriendRate">
-    <name name="MyTests">
+    <test name="MyTests">
         <classes>
             <class name="tests.LoginTest" />
             <class name="tests.MainPageTest"/>
             <class name="tests.RegistrationTest"/>
         </classes>
 
-    </name>
+    </test>
 </suite>
