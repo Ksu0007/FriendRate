@@ -23,7 +23,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(css = "//form/div[1]/div")
+    @FindBy(xpath = "//form/div[1]/div")
     private WebElement emailErrorMsg;
 
     @FindBy(xpath = "//label[@for='password']")
