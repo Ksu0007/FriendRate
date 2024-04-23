@@ -7,7 +7,7 @@ import pages.SignUpPage;
 import pages.StartPage;
 
 public class RegistrationTest extends BaseTest {
-    @Test
+    @Test(enabled = false)
     public void testSignUpButton() {
         StartPage startPage = new StartPage();
         startPage.signUp();

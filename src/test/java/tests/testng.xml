@@ -2,6 +2,8 @@
     <name name="MyTests">
         <classes>
             <class name="tests.LoginTest" />
+            <class name="tests.MainPageTest"/>
+            <class name="tests.RegistrationTest"/>
         </classes>
 
     </name>
