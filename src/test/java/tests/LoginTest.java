@@ -65,14 +65,14 @@ public class LoginTest extends BaseTest {
         SignInPage signInPage = new StartPage().signIn();
         signInPage.fillInEmail("email");
         signInPage.fillInPassword("");
-        Assert.assertEquals(signInPage.getEmailErrorMsg(), "Please enter a valid email address.");
+        Assert.assertEquals(signInPage.getEmailErrorMsg(), TestValues.SIGNUP_EMAIL_ERROR);
     }
     @Test(priority = 2)
     public void checkEmailWithoutDomain() {
         SignInPage signInPage = new StartPage().signIn();
         signInPage.fillInEmail("email@");
         signInPage.fillInPassword("");
-        Assert.assertEquals(signInPage.getEmailErrorMsg(), "Please enter a valid email address.");
+        Assert.assertEquals(signInPage.getEmailErrorMsg(), TestValues.SIGNUP_EMAIL_ERROR);
     }
 
     @Test(enabled = false, priority = 2)
@@ -80,7 +80,7 @@ public class LoginTest extends BaseTest {
         SignInPage signInPage = new StartPage().signIn();
         signInPage.fillInEmail("email@example");
         signInPage.fillInPassword("");
-        Assert.assertEquals(signInPage.getEmailErrorMsg(), "Please enter a valid email address.",
+        Assert.assertEquals(signInPage.getEmailErrorMsg(), TestValues.SIGNUP_EMAIL_ERROR,
                 "Validation for the email domain extension is missing");
     }
     @Test(priority = 2)
@@ -89,7 +89,7 @@ public class LoginTest extends BaseTest {
             SignInPage signInPage = new StartPage().signIn();
             signInPage.fillInEmail("email@example");
             signInPage.fillInPassword("");
-            Assert.assertEquals(signInPage.getEmailErrorMsg(), "Please enter a valid email address.",
+            Assert.assertEquals(signInPage.getEmailErrorMsg(), TestValues.SIGNUP_EMAIL_ERROR,
                     "Validation for the email domain extension is missing");
         } catch (NoSuchElementException e) {
             System.out.println("Validation for the email domain extension is missing");
