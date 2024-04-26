@@ -6,6 +6,7 @@
             <class name="tests.MainPageTest"/>
             <class name="tests.RegistrationHappyPathTest"/>
             <class name="tests.RegistrationSadPathTest"/>
+            <class name="api.FriendTest"/>
         </classes>
 
     </test>
