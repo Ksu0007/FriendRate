@@ -1,0 +1,38 @@
+{
+  "user": {
+    "_id": {
+      "type": "string",
+      "example": "658403f367c68f1d83745893",
+      "description": "User's id"
+    },
+    "token": {
+      "type": "string",
+      "example": null,
+      "description": "User's token after sign-in"
+    },
+    "avatarURL": {
+      "type": "string",
+      "example": "www.gravatar.com/avatar/45dd51eb2d3932cb0c09947211a19ff6?s=200&r=pg&d=mm",
+      "description": "User's avatar"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "example": "user11@mail.com",
+      "pattern": "^([\\w.-]+)@([\\w-]+\\.)+[\\w-]{2,4}$",
+      "description": "User's email"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-12-21T09:22:59.612Z",
+      "description": "DateTime of creating user"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2023-12-22T19:53:52.702Z",
+      "description": "DateTime of last updating user"
+    }
+  }
+}

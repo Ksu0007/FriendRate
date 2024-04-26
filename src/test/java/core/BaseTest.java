@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 abstract public class BaseTest {
     public static final String OS_NAME_FOR_GIT = System.getProperty("os.name");
     private static final String ENV_BROWSER_NAME = "ENV_BROWSER_NAME";
-    private static final boolean USE_CHROME_LOCALLY = false;
+    private static final boolean USE_CHROME_LOCALLY = true;
     protected static WebDriver driver;
     String browserName;
 

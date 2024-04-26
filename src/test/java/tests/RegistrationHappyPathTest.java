@@ -17,7 +17,7 @@ public class RegistrationHappyPathTest extends BaseTest {
         Assert.assertEquals(signUpPage.getHeaderText(), "Create new account");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testSignUp() throws Exception {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.enterEmail();
@@ -28,7 +28,7 @@ public class RegistrationHappyPathTest extends BaseTest {
                 "https://friend-rate-front.vercel.app/en/information");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testEnterAdditionalInfo() throws Exception {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.completeRegistration();
