@@ -1,7 +1,12 @@
 name: Run Tests Manually
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      test_class:
+        description: 'Class name of the tests to run'
+        required: true
+        default: 'AllTests' 
 
 jobs:
   RunTests:
@@ -15,17 +20,18 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'corretto'
           cache: maven
 
       - name: Maven test
-        run: mvn test -Dtest=${{ matrix.class }}
+        run: mvn test -Dtest=${{ github.event.inputs.test_class }} 
         env:
           ENV_BROWSER_NAME: "CHROME"
       - name: Attach screenshots and reports from Chrome
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: manual-screenshots-and-report-Chrome
+          name: manual-screenshots-and-report-Chrome-${{ github.run_id }}
           path: |
             screenshots
             target/surefire-reports/emailable-report.html
