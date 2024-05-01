@@ -39,7 +39,7 @@ jobs:
           cache: maven
 
       - name: Maven test
-        run: mvn test -Dtest=${{ github.event.inputs.test_class }} 
+        run: mvn test -Dtest=${{ github.event.inputs.selectCustom }}
         env:
           ENV_BROWSER_NAME: "CHROME"
       - name: Attach screenshots and reports from Chrome
