@@ -17,6 +17,7 @@ public class RegistrationHappyPathTest extends BaseTest {
         Assert.assertEquals(signUpPage.getHeaderText(), "Create new account");
     }
 
+
     @Test(enabled = false)
     public void testSignUp() throws Exception {
         SignUpPage signUpPage = new StartPage().signUp();
