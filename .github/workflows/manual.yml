@@ -3,10 +3,25 @@ name: Run Tests Manually
 on:
   workflow_dispatch:
     inputs:
-      test_class:
-        description: 'Class name of the tests to run'
+      titleCustom:
+        description: Choose Class
+        type: string
+        required: false
+        default: "Let's check it!"
+      selectCustom:
+        description: "Choose class"
+        type: choice
         required: true
-        default: 'tests.EditProfileBoundaryTest'  
+        options:
+          - mvn test
+          - mvn test -Dtest=LoginTest
+          - mvn test -Dtest=MainPageTest
+          - mvn test -Dtest=EditProfileBoundaryTest
+          - mvn test -Dtest=EditProfileHappyPathTest
+          - mvn test -Dtest=RegistrationHappyPathTest
+          - mvn test -Dtest=RegistrationSadPathTest
+          - mvn test -Dtest=FriendTest
+        default: All Tests
 
 jobs:
   RunTests:
