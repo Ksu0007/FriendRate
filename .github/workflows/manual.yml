@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'corretto'
           cache: maven
 
       - name: Maven test
@@ -26,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: screenshots-and-report-Chrome
+          name: manual-screenshots-and-report-Chrome
           path: |
             screenshots
             target/surefire-reports/emailable-report.html
