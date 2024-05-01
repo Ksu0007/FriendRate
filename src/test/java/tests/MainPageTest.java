@@ -57,9 +57,9 @@ public class MainPageTest extends BaseTest {
     @Test
     public void checkAgeRangeSetup() {
         MainPage mainPage = new MainPage();
-        mainPage.setSliderRange(15, 25);
-        Assert.assertEquals(mainPage.getLeftSliderValue(), "15");
-        Assert.assertEquals(mainPage.getRightSliderVaue(), "25");
+        mainPage.setSliderRange(25, 35);
+        Assert.assertEquals(mainPage.getLeftSliderValue(), "25");
+        Assert.assertEquals(mainPage.getRightSliderVaue(), "35");
     }
 
 

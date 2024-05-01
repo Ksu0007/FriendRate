@@ -1,7 +1,7 @@
 package pages;
 
 import core.BasePage;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EditProfilePage extends BasePage {
 
-    @FindBy(xpath = "//h2")
+    @FindBy(css = ".edit_editHeaad__VWV74")
     private WebElement header;
 
     @FindBy(xpath = "//label[@for='username']")
@@ -18,7 +18,7 @@ public class EditProfilePage extends BasePage {
     @FindBy(name = "username")
     private WebElement userNameInput;
 
-    @FindBy(xpath = "/input[@id='username']/following-sibling::span[contains(@class, 'edit_errMes')]")
+    @FindBy(xpath = "//input[@id='username']/following-sibling::span[contains(@class, 'edit_errMes')]")
     private WebElement userNameError;
 
     @FindBy(xpath = "//label[@for='email']")
@@ -57,6 +57,26 @@ public class EditProfilePage extends BasePage {
     @FindBy(css = ".LangSelector_options2__T1T5T")
     private List<WebElement> langOptions;
 
+    @FindBy(xpath = "//label[@for='password']")
+    private WebElement passwordLabel;
+    
+    @FindBy(id = "password")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//input[@id='password']/following-sibling::span[contains(@class, 'edit_errMes')]")
+    private WebElement passwordError;
+
+    @FindBy(xpath = "//label[@for='passwordRepeat']")
+    private WebElement confirmPasswordLabel;
+
+    @FindBy(id = "passwordRepeat")
+    private WebElement confirmPasswordInput;
+
+    @FindBy(xpath = "//input[@id='passwordRepeat']/following-sibling::span[contains(@class, 'edit_errMes')]")
+    private WebElement confirmPasswordError;
+
+
+
     @FindBy(xpath = "//label[@for='about']")
     private WebElement aboutLabel;
 
@@ -66,38 +86,78 @@ public class EditProfilePage extends BasePage {
     @FindBy(xpath = "//textarea[@id='about']/following-sibling::span[contains(@class, 'edit_errMes')]")
     private WebElement aboutError;
 
+    @FindBy(css = ".edit_saveBtn__7jwAq")
+    private WebElement saveButton;
+
+    @FindBy(css = ".edit_inputForm__dq15i")
+    private WebElement otherElement;
+
     public EditProfilePage() {
         PageFactory.initElements(driver, this);
     }
 
     public String getHeaderText() {return header.getText();}
 
+    //Username
     public String getUserNameLabel() {return usernameLabel.getText();}
 
-    public void setNewUsername(String newUserName) {
-        userNameInput.clear();
-        userNameInput.sendKeys(newUserName);}
+    public String getUsernameValue() {return userNameInput.getAttribute("value");}
+
+    public void updateUsername (String newUserName) {
+        // clear the field (the only methods which is working here)
+        while (!userNameInput.getAttribute("value").isEmpty()) {
+            userNameInput.sendKeys(Keys.BACK_SPACE);
+        }
+        userNameInput.sendKeys(newUserName);
+    }
+
 
     public String getUserNameError(){ return userNameError.getText();}
 
-    public String getEmailLabel() {return emailLabel.getText();}
+    //Email
 
-    public void setNewEmail(String newEmail) {
-        emailInput.clear();
-        emailInput.sendKeys(newEmail);
+    public String getEmailLabel() {return emailLabel.getText();}
+    public String getEmailValue() {return emailInput.getAttribute("value");}
+
+    public void updateEmail(String newEmail) {
+       while (!emailInput.getAttribute("value").isEmpty()) {
+           emailInput.sendKeys(Keys.BACK_SPACE);
+       }
+       emailInput.sendKeys(newEmail);
     }
 
     public String getEmailError() {return emailError.getText();}
 
-    public String getBirthdayLabel() {return birthdayLabel.getText();}
+    public boolean isEmailErrorDisplayed() {
+        try {
+            return emailError.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
 
-    public void setBirthday(String birthday) {
-        birthdayInput.clear();
+    //Birthday
+
+    public String getBirthdayLabel() {return birthdayLabel.getText();}
+    public String getBirthdateValue() {return birthdayInput.getAttribute("value");}
+
+    public void updateBirthday(String birthday) {
+       while (!birthdayInput.getAttribute("value").isEmpty()){
+           birthdayInput.sendKeys(Keys.BACK_SPACE);
+       }
         birthdayInput.sendKeys(birthday);
     }
 
     public String getBirthdayError() {return birthdayError.getText();}
+    public boolean isBirthdayErrorDisplayed() {
+        try {
+            return birthdayError.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
 
+    //Gender
     public String getGenderLabelText() {return genderLabel.getText();}
 
     public void chooseGender(String neededGender) {
@@ -110,7 +170,10 @@ public class EditProfilePage extends BasePage {
         }
     }
 
+
+   //Language
     public String getLangLabelText() {return langLabel.getText();}
+
     private void chooseLanguage(String neededLanguage) {
         langDropdown.click();;
         for(WebElement lang : langOptions) {
@@ -120,4 +183,82 @@ public class EditProfilePage extends BasePage {
             }
         }
     }
+    // Password
+    public String getPasswordLabelText() {return passwordLabel.getText();}
+    public String getPasswordPlaceholder() {return passwordInput.getAttribute("placeholder");}
+    public String getPasswordError() {return passwordError.getText();}
+
+    public boolean isPasswordErrorDisplayed() {
+       try {
+           return passwordError.isDisplayed();
+       } catch (NoSuchElementException | StaleElementReferenceException e) {
+           return false;
+       }
+
+    }
+
+    public void updatePassword(String newPassword) {
+        passwordInput.sendKeys(newPassword);
+    }
+
+    //Confirm Password
+    public String getConfPassLabelText() {return confirmPasswordLabel.getText();}
+    public String getConfPassPlaceholder() {return confirmPasswordInput.getAttribute("placeholder");}
+    public String getConfPassError() {return confirmPasswordError.getText();}
+
+    public boolean isConfPassErrorDisplayed() {
+        try {
+            return confirmPasswordError.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
+
+    public void confirmPassword(String confirmPass) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+        confirmPasswordInput.sendKeys(confirmPass);
+    }
+
+    //About
+
+    public String getAboutLabel() {return aboutLabel.getText();}
+    public String getAboutValue() {return aboutInput.getAttribute("value");}
+    public String getAboutPalceholder() {return aboutInput.getAttribute("placeholder");}
+
+    public String getAboutError() {return aboutError.getText();}
+    public boolean isAboutErrorDisplayed() {
+        try {
+            return aboutError.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;
+        }
+    }
+
+
+    public void updateAboutInfo(String about) {
+        while (!aboutInput.getAttribute("value").isEmpty()){
+            aboutInput.sendKeys(Keys.BACK_SPACE);
+        }
+        aboutInput.sendKeys(about);
+    }
+
+    public ProfilePage updateAndSaveProfile(String newUsername, String newBirthday, String newAbout) {
+        updateUsername(newUsername);
+        updateBirthday(newBirthday);
+        updateAboutInfo(newAbout);
+        saveButton.click();
+        return new ProfilePage();
+    }
+
+    public void clickSave() {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("window.scrollBy(0, document.body.scrollHeight)");
+        saveButton.click();
+    }
+
+    public void findError() {
+        otherElement.click();
+    }
+
 }
