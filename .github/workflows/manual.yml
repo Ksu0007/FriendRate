@@ -26,10 +26,6 @@ on:
 jobs:
   RunTests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        class: ["tests.LoginTest", "tests.MainPageTest", "tests.RegistrationHappyPathTest", "tests.RegistrationSadPathTest", "api.FriendTest", "tests.EditProfileHappyPathTest", "tests.EditProfileBoundaryTest", "AllTests"]
-    steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
         uses: actions/setup-java@v2
