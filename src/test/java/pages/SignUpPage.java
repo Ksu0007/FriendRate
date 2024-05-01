@@ -26,7 +26,7 @@ public class SignUpPage extends BasePage {
     @FindBy(css = "#email")
     private WebElement emailInputField;
 
-    @FindBy(xpath = "//input[@id='email']/following-sibling::span")
+    @FindBy(xpath = "//input[@id='email']/following-sibling::span[contains(@class, 'SignUp_errMes')]")
     private WebElement emailErrorMsg;
 
     @FindBy(xpath = "//label[@for='password']")
@@ -35,7 +35,7 @@ public class SignUpPage extends BasePage {
     @FindBy(css = "#password")
     private WebElement passwordInputField;
 
-    @FindBy(xpath = "//input[@id='password']/following-sibling::span")
+    @FindBy(xpath = "//input[@id='password']/following-sibling::span[contains(@class, 'SignUp_errMes')]")
     private WebElement passwordErrorMsg;
 
     @FindBy(xpath = "/html/body/div[2]/form/label[2]/div/img")
@@ -47,7 +47,7 @@ public class SignUpPage extends BasePage {
     @FindBy(css = "#passwordRepeat")
     private WebElement confirmPassInputField;
 
-    @FindBy(xpath = " //input[@id='passwordRepeat']/following-sibling::span")
+    @FindBy(xpath = "//input[@id='passwordRepeat']/following-sibling::span[contains(@class, 'SignUp_errMes')]")
     private WebElement confirmPasswordErrorMsg;
 
     @FindBy(xpath = "//label[@for='passwordRepeat']//img[@alt='hide_icon']")

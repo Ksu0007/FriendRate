@@ -36,7 +36,7 @@ public class RegistrationSadPathTest extends BaseTest {
         Assert.assertEquals(signUpPage.getEmailErrorText(), TestValues.SIGNUP_EMAIL_ERROR);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testUsedEmailInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL, TestValues.VALID_PASSWORD, TestValues.VALID_PASSWORD);
