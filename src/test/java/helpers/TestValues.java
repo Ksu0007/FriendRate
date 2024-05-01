@@ -27,7 +27,7 @@ public class TestValues {
             "letters and special symbols.";
     public static String PASSWORD_WRONG_ERROR = "Incorrect email or password.";
     public static String MAINPAGE_URL = "https://friend-rate-front.vercel.app/en/main";
-    public static String MAINPAGE_DESC = "Select the parameters or who we will search for";
+    public static String MAINPAGE_DESC = "Choose criteria for finding your future interlocutor";
 
     public static String NEW_AGE = "30";
 }
