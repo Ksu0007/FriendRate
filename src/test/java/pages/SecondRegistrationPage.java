@@ -99,7 +99,6 @@ public class SecondRegistrationPage extends BasePage {
     }
 
     public void createAccount(String birthday, String gender) {
-        Faker faker = new Faker();
         usernameInput.sendKeys(faker.name().firstName());
         birthdayInput.sendKeys(birthday);
         chooseGender(gender);

@@ -4,6 +4,7 @@ import core.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -92,6 +93,8 @@ public class EditProfilePage extends BasePage {
     @FindBy(css = ".edit_inputForm__dq15i")
     private WebElement otherElement;
 
+    //JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
     public EditProfilePage() {
         PageFactory.initElements(driver, this);
     }
@@ -130,9 +133,10 @@ public class EditProfilePage extends BasePage {
 
     public boolean isEmailErrorDisplayed() {
         try {
-            return emailError.isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            getWait5().until(ExpectedConditions.invisibilityOf(emailError));
             return false;
+        } catch (TimeoutException e) {
+            return true;
         }
     }
 
@@ -151,9 +155,10 @@ public class EditProfilePage extends BasePage {
     public String getBirthdayError() {return birthdayError.getText();}
     public boolean isBirthdayErrorDisplayed() {
         try {
-            return birthdayError.isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            getWait5().until(ExpectedConditions.invisibilityOf(birthdayError));
             return false;
+        } catch (TimeoutException e) {
+            return true;
         }
     }
 
@@ -189,12 +194,12 @@ public class EditProfilePage extends BasePage {
     public String getPasswordError() {return passwordError.getText();}
 
     public boolean isPasswordErrorDisplayed() {
-       try {
-           return passwordError.isDisplayed();
-       } catch (NoSuchElementException | StaleElementReferenceException e) {
-           return false;
-       }
-
+        try {
+            getWait5().until(ExpectedConditions.invisibilityOf(passwordError));
+            return false;
+        } catch (TimeoutException e) {
+            return true;
+        }
     }
 
     public void updatePassword(String newPassword) {
@@ -208,14 +213,14 @@ public class EditProfilePage extends BasePage {
 
     public boolean isConfPassErrorDisplayed() {
         try {
-            return confirmPasswordError.isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            getWait5().until(ExpectedConditions.invisibilityOf(confirmPasswordError));
             return false;
+        } catch (TimeoutException e) {
+            return true;
         }
     }
 
     public void confirmPassword(String confirmPass) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollBy(0, document.body.scrollHeight)");
         confirmPasswordInput.sendKeys(confirmPass);
     }
@@ -229,9 +234,10 @@ public class EditProfilePage extends BasePage {
     public String getAboutError() {return aboutError.getText();}
     public boolean isAboutErrorDisplayed() {
         try {
-            return aboutError.isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            getWait5().until(ExpectedConditions.invisibilityOf(aboutError));
             return false;
+        } catch (TimeoutException e) {
+            return true;
         }
     }
 
@@ -247,12 +253,12 @@ public class EditProfilePage extends BasePage {
         updateUsername(newUsername);
         updateBirthday(newBirthday);
         updateAboutInfo(newAbout);
+        jsExecutor.executeScript("window.scrollBy(0, document.body.scrollHeight)");
         saveButton.click();
         return new ProfilePage();
     }
 
     public void clickSave() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollBy(0, document.body.scrollHeight)");
         saveButton.click();
     }

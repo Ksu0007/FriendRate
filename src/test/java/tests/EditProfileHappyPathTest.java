@@ -34,7 +34,6 @@ public class EditProfileHappyPathTest extends BaseTest {
 
         String newUsername = faker.name().firstName();
         String newBirthDate = String.valueOf(dateGenerator.getPastDate(Integer.parseInt(TestValues.NEW_AGE)));
-        System.out.println("Date: " + newBirthDate);
         String newAbout = faker.friends().quote();
 
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
@@ -45,7 +44,6 @@ public class EditProfileHappyPathTest extends BaseTest {
         Assert.assertEquals(profilePage.getUsername(), newUsername);
         Assert.assertEquals(profilePage.getAboutText(), newAbout);
         Assert.assertEquals(profilePage.getAge(), TestValues.NEW_AGE);
-
     }
 
 

@@ -1,5 +1,7 @@
 package core;
 
+import com.github.javafaker.Faker;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,14 +10,17 @@ import java.time.Duration;
 
 abstract public class BasePage {
     protected static WebDriver driver;
+    protected static JavascriptExecutor jsExecutor;
     private WebDriverWait wait2;
     private WebDriverWait wait5;
     private WebDriverWait wait10;
     protected static Actions actions;
+    public static Faker faker = new Faker();
 
     public static void setDriver(WebDriver webDriver) {
         driver = webDriver;
         actions = new Actions(driver);
+        jsExecutor = (JavascriptExecutor) driver;
     }
     protected WebDriver getDriver() {
         return driver;
