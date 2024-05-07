@@ -12,7 +12,7 @@ public class RegistrationSadPathTest extends BaseTest {
     public void testEmptyEmailInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration("", TestValues.VALID_PASSWORD, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getEmailErrorText(), "Required");
+        Assert.assertEquals(signUpPage.getEmailErrorText(), TestValues.SIGNUP_EMPTY_EMAIL);
     }
 
     @Test

@@ -357,7 +357,7 @@ public class EditProfileBoundaryTest extends BaseTest {
     }
 
     @Test
-    public void testInvalidLingPassword() {
+    public void testInvalidLongPassword() {
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
         editProfilePage.updatePassword(EditTestValues.INVALID_LONG_PASSWORD);
         editProfilePage.findError();
@@ -366,7 +366,7 @@ public class EditProfileBoundaryTest extends BaseTest {
     }
 
     @Test
-    public void testInvalidLingPasswordNoLetters() {
+    public void testInvalidLongPasswordNoLetters() {
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
         editProfilePage.updatePassword(EditTestValues.PASSWORD_WITHOUT_LETTERS);
         editProfilePage.findError();
@@ -375,7 +375,7 @@ public class EditProfileBoundaryTest extends BaseTest {
     }
 
     @Test
-    public void testInvalidLingPasswordNoNumbers() {
+    public void testInvalidLongPasswordNoNumbers() {
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
         editProfilePage.updatePassword(EditTestValues.PASSWORD_WITHOUT_NUMBERS);
         editProfilePage.findError();
@@ -384,7 +384,7 @@ public class EditProfileBoundaryTest extends BaseTest {
     }
 
     @Test
-    public void testInvalidLingPasswordNoSymbols() {
+    public void testInvalidLongPasswordNoSymbols() {
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
         editProfilePage.updatePassword(EditTestValues.PASSWORD_WITHOUT_SPECIAL_CHARACTERS);
         editProfilePage.findError();
