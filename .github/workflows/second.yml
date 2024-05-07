@@ -1,0 +1,62 @@
+  name: Manual Run
+  on:
+     workflow_dispatch:
+       inputs:
+         titleCustom:
+           description: Type the Title
+           type: string
+           required: true
+           default: All Tests
+         selectCustom:
+           description: Select Value
+           type: choice
+           required: true
+           options:
+             - All tests
+             - LoginTest
+             - MainPageTest
+             - EditProfileBoundaryTest
+             - EditProfileHappyPathTest
+             - RegistrationHappyPathTest
+             - RegistrationSadPathTest
+             - FriendTest
+           default: "All tests"
+
+  jobs:
+    RunTests:
+      runs-on: ubuntu-latest
+                 - uses: actions/checkout@v2
+                 - name: Set up JDK 17
+                   uses: actions/setup-java@v2
+                   with:
+                     java-version: '17'
+                     distribution: 'adopt'
+                     cache: maven
+
+                 - name: Maven test
+                   run: mvn test -Dtest=${{ github.event.inputs.selectCustom }}
+                   env:
+                     ENV_BROWSER_NAME: "CHROME"
+                 - name: Attach screenshots and reports from Chrome
+                   uses: actions/upload-artifact@v4
+                   if: failure()
+                   with:
+                     name: manual-screenshots-and-report-Chrome-${{ github.run_id }}
+                     path: |
+                       screenshots
+                       target/surefire-reports/emailable-report.html
+                 - name: Allure Report with history for Chrome-${{ github.run_id }}
+                   uses: simple-elf/allure-report-action@v1.9
+                   if: always()
+                   with:
+                     allure_results: target/allure-results
+                     allure_report: allure-report-chrome
+                     gh_pages: gh-pages
+                     allure_history: allure-history-chrome
+                 - name: Deploy report to GitHub Pages for Chrome
+                   if: always()
+                   uses: peaceiris/actions-gh-pages@v2
+                   env:
+                     PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                     PUBLISH_BRANCH: gh-pages
+                     PUBLISH_DIR: allure-history-chrome
