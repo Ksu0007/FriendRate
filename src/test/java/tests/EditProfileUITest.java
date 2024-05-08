@@ -13,6 +13,8 @@ import pages.SignInPage;
 import pages.StartPage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class EditProfileUITest extends BaseTest {
 
@@ -23,10 +25,39 @@ public class EditProfileUITest extends BaseTest {
     }
 
     @Test
-    public void testENLabels() throws Exception {
+    public void testENLabelsEmail() throws Exception {
         EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
         ExcelReader excelReader = new ExcelReader("src/test/resources/Fields.xlsx");
         Assert.assertEquals(editProfilePage.getEmailLabel(),
                 excelReader.getCellDataForTest("Лист1", 2, 1));
+    }
+
+    @Test(dataProvider = "profileFieldsLabelsEn", dataProviderClass = ExcelDataProviders.class)
+    public void testEnLabels(String expectedLabel) throws IOException, InterruptedException {
+        EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
+        Thread.sleep(5000);
+
+        String[] actualLabels = editProfilePage.getFieldsText();
+        boolean labelFound = false;
+        for (String actualLabel : actualLabels) {
+            if (actualLabel.equals(expectedLabel)) {
+                labelFound = true;
+                break;
+            }
+        }
+        Assert.assertTrue(labelFound, "Метка '" + expectedLabel + "' не найдена на веб-странице");
+
+    }
+
+    @Test
+    public void testEnLabels1() throws InterruptedException {
+        EditProfilePage editProfilePage = new MainPage().openProfile().openEdit();
+        Thread.sleep(5000);
+        String[] fields = editProfilePage.getFieldsText();
+        System.out.println("Fields from page:");
+        for (String field : fields) {
+            System.out.println(field);
+        }
+
     }
 }

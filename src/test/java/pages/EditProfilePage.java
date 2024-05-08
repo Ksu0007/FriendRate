@@ -6,12 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EditProfilePage extends BasePage {
 
     @FindBy(css = ".edit_editHeaad__VWV74")
     private WebElement header;
+
+    @FindBy(xpath = "//label")
+    private List<WebElement> fieldLabels;
 
     @FindBy(xpath = "//label[@for='username']")
     private WebElement usernameLabel;
@@ -187,6 +191,14 @@ public class EditProfilePage extends BasePage {
                 return;
             }
         }
+    }
+
+    public String[] getFieldsText() {
+        String [] fields = new String[fieldLabels.size()];
+        for (int i = 0; i < fieldLabels.size(); i++) {
+            fields[i] = fieldLabels.get(i).getText();
+        }
+        return fields;
     }
     // Password
     public String getPasswordLabelText() {return passwordLabel.getText();}

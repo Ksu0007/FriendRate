@@ -1,15 +1,26 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="FriendRate">
-    <test name="MyTests">
+    <test name="Positive paths">
         <classes>
-            <class name="tests.LoginTest" />
+            <class name="tests.LoginTest"/>
             <class name="tests.MainPageTest"/>
             <class name="tests.RegistrationHappyPathTest"/>
-            <class name="tests.RegistrationSadPathTest"/>
-            <class name="api.FriendTest"/>
             <class name="tests.EditProfileHappyPathTest"/>
+        </classes>
+    </test>
+    <test name="Sad paths">
+        <classes>
+            <class name="tests.RegistrationSadPathTest"/>
+        </classes>
+    </test>
+    <test name="Boundary Values Tests">
+        <classes>
             <class name="tests.EditProfileBoundaryTest"/>
         </classes>
-
+    </test>
+    <test name="Api tests">
+        <classes>
+            <class name="api.FriendTest"/>
+        </classes>
     </test>
 </suite>

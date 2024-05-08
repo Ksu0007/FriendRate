@@ -61,7 +61,7 @@ public class ExcelReader {
         }
         return result.toString();
     }
-    
+
     private int fileCountColumn() {
         return sheet.getRow(0).getLastCellNum();
     }
@@ -87,7 +87,7 @@ public class ExcelReader {
                 if (value == null) {
                     System.out.println("Empty cells");
                 }
-                
+
             }
         }
         return data;
@@ -115,23 +115,31 @@ public class ExcelReader {
         return data;
     }
 
-    public String getDataToCompare(int row, int element) throws Exception {
-        String[][] dataFromExcel = getSheetDataForTests();
-        String toCompare = "";
-        String tempData = dataFromExcel[row][element];
-        ArrayList<String> forTest = new ArrayList<>();
-        for (int i = 0; i <dataFromExcel[i].length ; i++) {
-            if(i == row) {
-                for (int j = 0; j < dataFromExcel[j].length ; j++) {
-                    if (j == element) {
-                        toCompare = dataFromExcel[j].toString();
-                    }
-                }
+    public String[] getColumnDataFromSheet(String sheetName, int columnIndex) throws Exception {
+        File file = new File(fieldsExcelPath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        XSSFWorkbook book = new XSSFWorkbook(fileInputStream);
+        XSSFSheet sheet = book.getSheet(sheetName);
+
+        int numberOfRows = sheet.getPhysicalNumberOfRows();
+        String[] columnData = new String[numberOfRows - 1];
+
+        for (int i = 0; i < numberOfRows; i++) {
+            XSSFRow row = sheet.getRow(i);
+            XSSFCell cell = row.getCell(columnIndex);
+            String value = cellToString(cell);
+            columnData[i] = value;
+            if (value == null) {
+                System.out.println("Empty cell at row: " + (i+1) + ", column: " + (columnIndex+1));
             }
         }
-        System.out.println(tempData);
-        return toCompare;
+
+        book.close();
+        fileInputStream.close();
+
+        return columnData;
     }
+
 
     public String getCellDataForTest(String sheetName, int rowNum, int columnNum) throws Exception {
         File file = new File(fieldsExcelPath);
@@ -141,7 +149,7 @@ public class ExcelReader {
         int numberOfColumns = fileCountColumn();
         int numberOfRows = fileCountRows();
         String value = "";
-        //String[][] data = new String[numberOfRows - 1][numberOfColumns];
+
         for (int i = 1; i < numberOfRows; i++) {
             if (i == rowNum) {
                 for (int j = 0; j < numberOfColumns; j++) {
