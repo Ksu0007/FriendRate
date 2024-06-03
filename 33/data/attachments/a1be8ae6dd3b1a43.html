@@ -1,0 +1,31 @@
+<div>PATCH to https://whispering-falls-70384-f5d92e367b77.herokuapp.com/api/user/update</div>
+
+<h4>Body</h4>
+<div>
+    <pre class="preformated-text">
+{
+    &quot;username&quot;: &quot;Lyle&quot;,
+    &quot;email&quot;: &quot;riley.harber@yahoo.com&quot;,
+    &quot;gender&quot;: &quot;Male&quot;,
+    &quot;birthday&quot;: &quot;02.09.1999&quot;
+}    </pre>
+</div>
+
+<h4>Headers</h4>
+<div>
+        <div>Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpbGV5LmhhcmJlckB5YWhvby5jb20iLCJpYXQiOjE3MTc0NDk3NzUsImV4cCI6MTcxNzQ1MzM3NX0.bOQqxU9Vcp1WH20Zs4pVmljeyc6QS5g2FWN0Xytijis</div>
+        <div>Accept: */*</div>
+        <div>Content-Type: application/json</div>
+</div>
+
+
+
+<h4>Curl</h4>
+<div>
+curl -v -X PATCH &#39;https://whispering-falls-70384-f5d92e367b77.herokuapp.com/api/user/update&#39; -H &#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpbGV5LmhhcmJlckB5YWhvby5jb20iLCJpYXQiOjE3MTc0NDk3NzUsImV4cCI6MTcxNzQ1MzM3NX0.bOQqxU9Vcp1WH20Zs4pVmljeyc6QS5g2FWN0Xytijis&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;username&quot;: &quot;Lyle&quot;,
+    &quot;email&quot;: &quot;riley.harber@yahoo.com&quot;,
+    &quot;gender&quot;: &quot;Male&quot;,
+    &quot;birthday&quot;: &quot;02.09.1999&quot;
+}&#39;
+</div>
