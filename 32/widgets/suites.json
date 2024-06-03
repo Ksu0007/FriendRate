@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"57b5c9c77410a898e964533c11e64232","name":"FriendRate","statistic":{"failed":11,"broken":1,"skipped":0,"passed":68,"unknown":6,"total":86}}]}
+{"total":1,"items":[{"uid":"57b5c9c77410a898e964533c11e64232","name":"FriendRate","statistic":{"failed":11,"broken":6,"skipped":0,"passed":63,"unknown":6,"total":86}}]}
