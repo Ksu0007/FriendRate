@@ -26,6 +26,8 @@ public class TestValues {
     public static String VALID_PASSWORD = "Qwe456uio$";
     public static String PASSWORD_ERROR = "Password must be 8-30 characters and a combination of numbers, " +
             "letters and special symbols.";
+    public static String LONG_PASSWORD_ERROR = "The password must be 8-30 characters long and contain " +
+            "at least one digit, one lowercase letter, one uppercase letter, and one special character.";
     public static String PASSWORD_WRONG_ERROR = "Incorrect email or password.";
     public static String MAINPAGE_URL = "https://friend-rate-front.vercel.app/en/main";
     public static String MAINPAGE_DESC = "Choose criteria for finding your future interlocutor";

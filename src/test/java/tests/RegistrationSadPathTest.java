@@ -47,13 +47,13 @@ public class RegistrationSadPathTest extends BaseTest {
     public void testShortPasswordInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL, TestValues.SHORT_PASSWORD, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.SIGNUP_PASSWORD_ERROR);
+        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.LONG_PASSWORD_ERROR);
     }
     @Test
     public void testLongPasswordInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL, TestValues.LONG_PASSWORD, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.SIGNUP_PASSWORD_ERROR);
+        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.LONG_PASSWORD_ERROR);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class RegistrationSadPathTest extends BaseTest {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL,
                 TestValues.NO_LETTERS_PASSWORD, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.SIGNUP_PASSWORD_ERROR);
+        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.LONG_PASSWORD_ERROR);
     }
 
     @Test
@@ -69,21 +69,21 @@ public class RegistrationSadPathTest extends BaseTest {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL,
                 TestValues.NO_NUMBERS_PASSWORD, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.SIGNUP_PASSWORD_ERROR);
+        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.LONG_PASSWORD_ERROR);
     }
 
     @Test
     public void testNoSpecialCharsPasswordInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL, TestValues.NO_SPECIAL_CHARS, TestValues.VALID_PASSWORD);
-        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.SIGNUP_PASSWORD_ERROR);
+        Assert.assertEquals(signUpPage.getPasswordErrorText(), TestValues.LONG_PASSWORD_ERROR);
     }
 
     @Test
     public void testEmptyConfPasswordInput() {
         SignUpPage signUpPage = new StartPage().signUp();
         signUpPage.invalidRegistration(TestValues.VALID_EMAIL, TestValues.VALID_PASSWORD, "");
-        Assert.assertEquals(signUpPage.getConfirmPassErrorText(), "Required");
+        Assert.assertEquals(signUpPage.getConfirmPassErrorText(), "Please confirm your password");
     }
 
     @Test
