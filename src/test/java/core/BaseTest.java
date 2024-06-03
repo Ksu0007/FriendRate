@@ -12,8 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,8 +26,7 @@ abstract public class BaseTest {
     private static final boolean USE_CHROME_LOCALLY = true;
     protected static WebDriver driver;
     String browserName;
-
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         if (OS_NAME_FOR_GIT.equals("Linux")) {
 
@@ -90,13 +88,17 @@ abstract public class BaseTest {
     }
 
     @AfterMethod
-    protected void tearDown() {
-        driver.quit();
+    protected void clear() {
+        driver.manage().deleteAllCookies();
     }
     @AfterMethod
     protected void afterMethod(Method method, ITestResult testResult) {
         if (!testResult.isSuccess()) takeScreenshot(driver, method.getName(), this.getClass().getName());
 
+    }
+    @AfterClass
+    protected void tearDown() {
+        driver.quit();
     }
 
     static File takeScreenshot (WebDriver driver, String methodName, String className) {
